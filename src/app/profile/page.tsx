@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/utils/supabaseClient";
 import { getCurrentUser } from "@/utils/auth";
 
-const defaultAvatar = "https://ui-avatars.com/api/?name=User";
+const defaultAvatar = "https://i.imgur.com/iQT1fpF.jpeg"; // Imagen de Sonic.exe funcional y pública
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -88,8 +88,17 @@ const ProfilePage = () => {
       <h1>Perfil de Usuario</h1>
       <section style={{ margin: '2rem 0', display: 'flex', gap: '2rem', alignItems: 'center' }}>
         <div>
-          <img src={profile.avatar_url || defaultAvatar} alt="Foto de perfil" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', marginBottom: 8 }} />
+          <img
+  src={
+    profile.avatar_url && profile.avatar_url.trim() !== ""
+      ? profile.avatar_url
+      : defaultAvatar
+  }
+  alt="Foto de perfil"
+  style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', marginBottom: 8 }}
+/>
           <input type="file" accept="image/*" onChange={e => setAvatarFile(e.target.files?.[0] || null)} />
+<button style={{ marginTop: 12, width: '100%' }} onClick={() => router.push('/trivia')}>Hacer trivia</button>
         </div>
         <div style={{ flex: 1 }}>
           <label>Nombre:</label>
