@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: linear-gradient(135deg, #23235b 0%, #5f2c82 100%);
+  --background-solid: #23235b;
+  --foreground: #ededed;
+  --primary: #5f2c82;
+  --secondary: #4834d4;
+  --accent: #7f53ac;
 }
 
 @theme inline {
@@ -12,15 +16,56 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Eliminado prefers-color-scheme para forzar modo oscuro */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.main-btn, .navbar-list li a {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #fff !important;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(95,44,130,0.15);
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.main-btn:hover, .navbar-list li a:hover {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+  transform: scale(1.05);
+}
+
+input, select, textarea, button {
+  background: #23235b;
+  color: #ededed;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+input[type="color"] {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+h1, h2, h3 {
+  color: #a084ee;
+}
+
+section {
+  background: rgba(36, 34, 77, 0.70);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 16px rgba(95,44,130,0.10);
 }

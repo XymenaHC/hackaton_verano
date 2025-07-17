@@ -9,15 +9,17 @@ const resources = {
   es: { translation: es },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'es', // idioma por defecto
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+if (!i18n.isInitialized) {
+  i18n
+    .use(initReactI18next)
+    .init({
+      resources,
+      lng: 'es',
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
+      },
+    });
+}
 
 export default i18n;
