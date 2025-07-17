@@ -1,6 +1,10 @@
+'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
-const MoviesPage = () => (
+const MoviesPage = () => {
+  const router = useRouter();
+  return (
   <main style={{ padding: '2rem', maxWidth: 900, margin: '0 auto' }}>
     <h1>Películas</h1>
     <section style={{ margin: '1rem 0' }}>
@@ -18,7 +22,7 @@ const MoviesPage = () => (
           <p>Año: 1999</p>
           <p>Calificación: 5</p>
           <button>Marcar como completada</button>
-          <button>Ver trivia</button>
+          <button onClick={() => router.push('/trivia?type=movie&title=Matrix')}>Ver trivia</button>
           <button>Ver datos curiosos</button>
           <button>Ver plataformas</button>
           <button>Ver timeline</button>
@@ -38,6 +42,7 @@ const MoviesPage = () => (
       </div>
     </section>
   </main>
-);
+  );
+};
 
 export default MoviesPage;

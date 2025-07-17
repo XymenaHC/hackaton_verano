@@ -1,6 +1,10 @@
+'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
-const SeriesPage = () => (
+const SeriesPage = () => {
+  const router = useRouter();
+  return (
   <main style={{ padding: '2rem', maxWidth: 900, margin: '0 auto' }}>
     <h1>Series</h1>
     <section style={{ margin: '1rem 0' }}>
@@ -18,7 +22,7 @@ const SeriesPage = () => (
           <p>Año: 2016</p>
           <p>Calificación: 5</p>
           <button>Marcar como completada</button>
-          <button>Ver trivia</button>
+          <button onClick={() => router.push('/trivia?type=series&title=Stranger%20Things')}>Ver trivia</button>
           <button>Ver datos curiosos</button>
           <button>Ver plataformas</button>
           <button>Ver timeline</button>
@@ -38,6 +42,7 @@ const SeriesPage = () => (
       </div>
     </section>
   </main>
-);
+  );
+};
 
 export default SeriesPage;
