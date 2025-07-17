@@ -37,13 +37,23 @@ const ProfilePage = () => {
   // Subir avatar a Supabase Storage
   const uploadAvatar = async (file: File) => {
     const fileExt = file.name.split(".").pop();
-    const filePath = `avatars/${user.id}.${fileExt}`;
-    let { error } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
-    if (error) throw error;
-    // Obtener URL pública
-    const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
-    return data.publicUrl;
+    const filePath = `${user.id}.${fileExt}`;
+    try {
+      const { error } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
+      if (error) {
+        if (error.message.includes("Bucket not found")) {
+          throw new Error("El bucket 'avatars' no existe en Supabase Storage. Ve a tu panel de Supabase > Storage y crea un bucket público llamado 'avatars'.");
+        }
+        throw error;
+      }
+      // Obtener URL pública
+      const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
+      return data.publicUrl;
+    } catch (e: any) {
+      throw e;
+    }
   };
+
 
   // Guardar cambios
   const handleSave = async () => {
