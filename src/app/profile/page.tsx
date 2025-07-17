@@ -133,17 +133,20 @@ const ProfilePage = () => {
         <h2>Logros desbloqueados</h2>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <div style={{ textAlign: 'center' }}>
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Logro" width={48} />
-            <div>Primer contenido completado</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="Logro" width={48} />
-            <div>5 películas vistas</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616494.png" alt="Logro" width={48} />
-            <div>5 series vistas</div>
-          </div>
+  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Logro" width={48} />
+  <div>Primer contenido completado</div>
+  <button style={{ marginTop: 6 }} onClick={() => router.push('/trivia?type=movie&title=Matrix')}>Ver trivia</button>
+</div>
+<div style={{ textAlign: 'center' }}>
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="Logro" width={48} />
+  <div>5 películas vistas</div>
+  <button style={{ marginTop: 6 }} onClick={() => router.push('/trivia?type=movie&title=Matrix')}>Ver trivia</button>
+</div>
+<div style={{ textAlign: 'center' }}>
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616494.png" alt="Logro" width={48} />
+  <div>5 series vistas</div>
+  <button style={{ marginTop: 6 }} onClick={() => router.push('/trivia?type=series&title=Stranger%20Things')}>Ver trivia</button>
+</div>
           {/* Más logros simulados */}
         </div>
       </section>
