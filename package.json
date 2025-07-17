@@ -11,7 +11,9 @@
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.1"
+    "next": "15.4.1",
+    "i18next": "^23.11.2",
+    "react-i18next": "^13.2.2"
   },
   "devDependencies": {
     "typescript": "^5",
