@@ -15,6 +15,21 @@ const TRIVIAS: Record<string, any> = {
       options: ["Verde", "Azul", "Roja", "Amarilla"],
       answer: 2,
     },
+    {
+      question: "¿Quién es el líder de la resistencia?",
+      options: ["Neo", "Morpheus", "Smith", "Oracle"],
+      answer: 1,
+    },
+    {
+      question: "¿Cuál es el nombre de la nave principal?",
+      options: ["Nebuchadnezzar", "Pegasus", "Enterprise", "Normandy"],
+      answer: 0,
+    },
+    {
+      question: "¿Quién traiciona a Morpheus y su equipo?",
+      options: ["Tank", "Dozer", "Cypher", "Switch"],
+      answer: 2,
+    },
   ],
   "series:Stranger Things": [
     {
@@ -25,6 +40,21 @@ const TRIVIAS: Record<string, any> = {
     {
       question: "¿En qué ciudad ocurre la historia?",
       options: ["Hawkins", "Springfield", "Gotham", "Metropolis"],
+      answer: 0,
+    },
+    {
+      question: "¿Cómo apodan a los monstruos del otro lado?",
+      options: ["Demogorgon", "Mind Flayer", "Vecna", "Todos los anteriores"],
+      answer: 3,
+    },
+    {
+      question: "¿Quién es el hermano mayor de Will Byers?",
+      options: ["Steve", "Jonathan", "Mike", "Lucas"],
+      answer: 1,
+    },
+    {
+      question: "¿Cuál es el nombre del centro de investigación en Hawkins?",
+      options: ["Hawkins Lab", "Umbrella Corp.", "Black Mesa", "Stark Industries"],
       answer: 0,
     },
   ],
@@ -39,6 +69,21 @@ const TRIVIAS: Record<string, any> = {
       options: ["Peach", "Zelda", "Midna", "Ruto"],
       answer: 1,
     },
+    {
+      question: "¿Qué objeto es fundamental para viajar en el tiempo en Ocarina of Time?",
+      options: ["Espada Maestra", "Ocarina del Tiempo", "Escudo Hyliano", "Trifuerza"],
+      answer: 1,
+    },
+    {
+      question: "¿Cuál es el villano principal en la mayoría de los juegos?",
+      options: ["Vaati", "Majora", "Ganondorf", "Zant"],
+      answer: 2,
+    },
+    {
+      question: "¿Cómo se llama el reino donde ocurren la mayoría de las aventuras?",
+      options: ["Termina", "Hyrule", "Koholint", "Holodrum"],
+      answer: 1,
+    },
   ],
 };
 
@@ -48,7 +93,17 @@ const TriviaPage = () => {
   const type = params.get("type") || "";
   const title = params.get("title") || "";
   const triviaKey = `${type}:${title}`;
-  const questions = useMemo(() => TRIVIAS[triviaKey] || [], [triviaKey]);
+  const questions = useMemo(() => {
+  const base = TRIVIAS[triviaKey] || [];
+  if (base.length >= 5) return base.slice(0, 5);
+  // Rellenar con preguntas dummy si hay menos de 5
+  const dummy = {
+    question: "Pregunta extra de ejemplo",
+    options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+    answer: 0,
+  };
+  return [...base, ...Array(5 - base.length).fill(dummy)].map((q, i) => ({ ...q, question: q.question + ` (${i + 1})` }));
+}, [triviaKey]);
 
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
